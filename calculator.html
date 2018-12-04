@@ -6,40 +6,35 @@
     <title>Calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="calculator.css" />
-    <script src="calculator.js"></script>
 </head>
 <body>
     <div id="main-container">
         <div id="calculator">
             <div id="numbers">
-                <button id="decimal">.</button>
-                <button id="zero">0</button>
-                <button id="one">1</button>
-                <button id="two">2</button>
-                <button id="three">3</button>
-                <button id="four">4</button>
-                <button id="five">5</button>
-                <button id="six">6</button>
-                <button id="seven">7</button>
-                <button id="eight">8</button>
-                <button id="nine">9</button>
+                <button id="decimal" class="validInput">.</button>
+                <button id="zero" class="validInput">0</button>
+                <button id="one" class="validInput">1</button>
+                <button id="two" class="validInput">2</button>
+                <button id="three" class="validInput">3</button>
+                <button id="four" class="validInput">4</button>
+                <button id="five" class="validInput">5</button>
+                <button id="six" class="validInput">6</button>
+                <button id="seven" class="validInput">7</button>
+                <button id="eight" class="validInput">8</button>
+                <button id="nine" class="validInput">9</button>
             </div>
             <div id="operators">
-                <button id="clear">clear</button>
-                <button id="add">+</button>
-                <button id="subtract">-</button>
-                <button id="multiply">*</button>
-                <button id="divide">/</button>
+                <button id="clear" class="validInput">clear</button>
+                <button id="add" class="validInput">+</button>
+                <button id="subtract" class="validInput">-</button>
+                <button id="multiply" class="validInput">*</button>
+                <button id="divide" class="validInput">/</button>
                 <button id="equals">=</button>
-                
             </div>
-            <p id="display">placeholder</p>
-
+            <div id="display">placeholder</div>
         </div>
-
-
     </div>
-
-
 </body>
+<script src="calculator.js"></script>
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 </html>
