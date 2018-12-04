@@ -1,42 +1,45 @@
-// if a button is pressed -> push number from value into a display array (innerHTML from id with whitespace)
+let displayString = '';
+let resultString = '';
 
-// if clear is pressed -> delete all values in display array
+let numbers = document.getElementsByClassName("numberInput");
 
-// if equals is pressed -> do the math of array and push result with calculation into array (reduce?)
-
-// make sure to keep the whole calculations in array with the result.
-
-// make sure that if there are several operators (+-*/) only the only the last one counts
-
-
-let displayArray = [];
-
-let buttonsId = document.getElementsByClassName("validInput");
-
-for (let item of buttonsId) {
+for (let item of numbers) {
         item.addEventListener('click', (e) => {
-        let value = e.srcElement.innerHTML;
-        displayArray.push(value);
-        console.log(displayArray)
-        document.getElementById('display').innerHTML = displayArray
-    })
-    
+            let value = e.srcElement.innerHTML;
+            displayString += value;
+            console.log(displayString)
+            document.getElementById('display').innerHTML = displayString
+    })    
 };
 
+let operators = document.getElementsByClassName("operatorInput");
+
+for (let item of operators) {
+        item.addEventListener('click', (e) => {
+            let value = e.srcElement.innerHTML;
+            console.log(displayString.slice(0))
+            if (displayString.slice(-2).includes('+') || displayString.slice(-2).includes('-')
+                || displayString.slice(-2).includes('*') || displayString.slice(-2).includes('/')) {
+                let tempString = [...displayString]
+                tempString.splice(-2,1, value)
+                displayString = tempString.join('')
+                document.getElementById('display').innerHTML = displayString
+            } else {
+            displayString += ' ' + value + ' ';
+            document.getElementById('display').innerHTML = displayString
+            console.log(displayString)
+            }
+    })    
+}
+
 document.getElementById('equals').addEventListener('click', (e) => {
-   document.getElementById('display').innerHTML = eval(displayArray.join(' '));
-})
+   let result = eval(displayString);
+   document.getElementById('result').innerHTML = result;
+   resultString = result + ' '
+   document.getElementById('display').innerHTML += ' = ' + result;
+   displayString = result + ' ';
+});
 
-
-
-
-// let testArray = ['20', '+', '6', '*', '+', '10'];
-
-
-// console.log(eval(testArray.join(' ')))
-
-// console.log(20+6*+10)
-
-// PROBLEM: if multiple operators are entered, only use last one (maybe add classes and exception in buttons for of loop)
-
-
+document.getElementById('clear').addEventListener('click', (e) => {
+    window.location.reload();
+});
