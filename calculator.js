@@ -6,12 +6,8 @@ let numbers = document.getElementsByClassName("numberInput");
 for (let item of numbers) {
         item.addEventListener('click', (e) => {
             let value = e.srcElement.innerHTML;
-            let singleInput = displayString.slice(-1)
-            if (singleInput.includes('0') && displayString.length === 1 && value != '.') {
-                let tempArr = [...displayString]
-                tempArr.splice(-1,1, value)
-                displayString = tempArr.join('')
-            } else if (value ==='.' && displayString.includes('.') && !/[+,\-,*,\/]/.test(displayString)) {                
+            if (displayString.includes('0') && displayString.length === 1 && value != '.' 
+            || value ==='.' && displayString.includes('.') && !/[+,\-,*,\/]/.test(displayString)) {
                 displayString = displayString
             } else {
                 displayString += value;
@@ -26,9 +22,8 @@ let operators = document.getElementsByClassName("operatorInput");
 for (let item of operators) {
         item.addEventListener('click', (e) => {
             let value = e.srcElement.innerHTML;
-            let singleInput = displayString.slice(-2);
-            if (singleInput.includes('+') || singleInput.includes('-')
-                || singleInput.includes('*') || singleInput.includes('/')) {
+            let singleInput = displayString.slice(-2);   
+            if (/[+,\-,*,\/]/.test(singleInput)) {
                 let tempArr = [...displayString]
                 tempArr.splice(-2,1, value)
                 displayString = tempArr.join('')
@@ -43,20 +38,12 @@ for (let item of operators) {
 document.getElementById('equals').addEventListener('click', (e) => {
    let result = eval(displayString);
    document.getElementById('result').innerHTML = result;
-   resultString = result + ' '
    document.getElementById('display').innerHTML = result;
-   displayString = result + ' ';
+   resultString = displayString = result + ' ';
 });
 
 document.getElementById('clear').addEventListener('click', (e) => {
     document.getElementById('display').innerHTML = 0;
-    displayString = '';
     document.getElementById('result').innerHTML = 0;
-    resultString = ''
+    displayString = resultString = '';
 });
-
-
-// Tests not passing:
-// ==============
-// - operations with decimal point
-// - pressing = repeats showing the result again
