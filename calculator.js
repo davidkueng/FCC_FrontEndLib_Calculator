@@ -11,7 +11,7 @@ for (let item of numbers) {
                 let tempArr = [...displayString]
                 tempArr.splice(-1,1, value)
                 displayString = tempArr.join('')
-            } else if (value ==='.' && displayString.includes('.')) {                
+            } else if (value ==='.' && displayString.includes('.') && !/[+,\-,*,\/]/.test(displayString)) {                
                 displayString = displayString
             } else {
                 displayString += value;
@@ -35,6 +35,7 @@ for (let item of operators) {
             } else {
             displayString += ' ' + value + ' ';
             }
+            document.getElementById('result').innerHTML = value
             document.getElementById('display').innerHTML = displayString
     })    
 };
@@ -43,7 +44,7 @@ document.getElementById('equals').addEventListener('click', (e) => {
    let result = eval(displayString);
    document.getElementById('result').innerHTML = result;
    resultString = result + ' '
-   document.getElementById('display').innerHTML += ' = ' + result;
+   document.getElementById('display').innerHTML = result;
    displayString = result + ' ';
 });
 
@@ -56,8 +57,6 @@ document.getElementById('clear').addEventListener('click', (e) => {
 
 
 // Tests not passing:
-// ===============
-// - decimal can only be entered once
+// ==============
 // - operations with decimal point
-// - several operators entered -> only last counts
-// - pressing = shows result and you can perform new calculation
+// - pressing = repeats showing the result again
