@@ -7,6 +7,7 @@ for (let item of numbers) {
         item.addEventListener('click', (e) => {
             let value = e.srcElement.innerHTML;
             displayString += value;
+            document.getElementById('result').innerHTML = value
             document.getElementById('display').innerHTML = displayString
     })    
 };
@@ -16,17 +17,18 @@ let operators = document.getElementsByClassName("operatorInput");
 for (let item of operators) {
         item.addEventListener('click', (e) => {
             let value = e.srcElement.innerHTML;
-            if (displayString.slice(-2).includes('+') || displayString.slice(-2).includes('-')
-                || displayString.slice(-2).includes('*') || displayString.slice(-2).includes('/')) {
-                let tempString = [...displayString]
-                tempString.splice(-2,1, value)
-                displayString = tempString.join('')
+            let doubleOp = displayString.slice(-2);
+            if (doubleOp.includes('+') || doubleOp.includes('-')
+                || doubleOp.includes('*') || doubleOp.includes('/')) {
+                let tempArr = [...displayString]
+                tempArr.splice(-2,1, value)
+                displayString = tempArr.join('')
             } else {
             displayString += ' ' + value + ' ';
             }
             document.getElementById('display').innerHTML = displayString
     })    
-}
+};
 
 document.getElementById('equals').addEventListener('click', (e) => {
    let result = eval(displayString);
@@ -36,6 +38,6 @@ document.getElementById('equals').addEventListener('click', (e) => {
    displayString = result + ' ';
 });
 
-document.getElementById('clear').addEventListener('click', (e) => {
+document.getElementById('AC').addEventListener('click', (e) => {
     window.location.reload();
 });
