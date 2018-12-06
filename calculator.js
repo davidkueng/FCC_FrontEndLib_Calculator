@@ -3,8 +3,8 @@ let resultString = '';
 
 let numbers = document.getElementsByClassName("numberInput");
 
-for (let item of numbers) {
-        item.addEventListener('click', (e) => {
+for (let num of numbers) {
+        num.addEventListener('click', (e) => {
             let value = e.srcElement.innerHTML;
             if (displayString.includes('0') && displayString.length === 1 && value != '.' 
             || value ==='.' && displayString.includes('.') && !/[+,\-,*,\/]/.test(displayString)) {
@@ -19,8 +19,8 @@ for (let item of numbers) {
 
 let operators = document.getElementsByClassName("operatorInput");
 
-for (let item of operators) {
-        item.addEventListener('click', (e) => {
+for (let op of operators) {
+        op.addEventListener('click', (e) => {
             let value = e.srcElement.innerHTML;
             let singleInput = displayString.slice(-2);   
             if (/[+,\-,*,\/]/.test(singleInput)) {
@@ -43,7 +43,7 @@ document.getElementById('equals').addEventListener('click', (e) => {
 });
 
 document.getElementById('clear').addEventListener('click', (e) => {
-    document.getElementById('display').innerHTML = 0;
+    document.getElementById('display').innerHTML = 'calc';
     document.getElementById('result').innerHTML = 0;
     displayString = resultString = '';
 });
